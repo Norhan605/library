@@ -1,0 +1,38 @@
+﻿@model List<Books>
+
+@{
+    ViewData["Title"] = "Borrow";
+   
+}
+
+
+@*@Html.DropDownList("Books","SelectBook Id");*@
+
+@*    @Html.DropDownList("Book","Id");*@
+
+@*@Html.DropDownList("Borrowers","SelectBorrower Id");*@
+
+@using (Html.BeginForm())
+{
+    <b>ID:</b>
+    @Html.TextBox("searchNum",null,new{name="txtsearch"});
+    <input type="submit" value="Search" >
+}
+<table class="table" border="1">
+    <tr>
+@*<th>@Html.DisplayNameFor(model=>model.Id)</th>
+<th>@Html.DisplayNameFor(model=>model.Name)</th>*@
+        <th>ID</th>
+        <th>Name</th>
+
+    </tr>
+    @foreach(var item in Model)
+    {
+       <tr>
+           <td>@Html.DisplayFor(modelItem=>item.Id)</td>
+           <td>@Html.DisplayFor(modelItem=>item.Name)</td>
+       </tr> 
+    }
+
+
+</table>

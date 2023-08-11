@@ -1,0 +1,36 @@
+﻿
+@model Books
+@{
+    ViewData["Title"] = "Edit";
+   // var x = ViewBag.Book;
+}
+<div class="container w-50 my-3">
+   
+    <form method="post" asp-controller="Book" asp-action="UpdateBook">
+
+      @*  <div class="mb-3">
+            <label for="exampleInputEmail1" class="form-label">Book Id</label>
+            <input type="text" class="form-control" value="@Model.Id" name="Id">
+
+        </div>*@
+    
+        <div class="mb-3">
+            <label for="exampleInputEmail1" class="form-label" >Book Name</label>
+            <input type="text" class="form-control" value="@Model.Name" name="Name">
+
+        </div>
+        <div class="mb-3">
+            <label for="exampleInputEmail1" class="form-label" > Book Code</label>
+            <input type="text" class="form-control" value="@Model.Code" name="Code">
+
+        </div>
+
+        <div class="mb-3">
+            <label for="exampleInputEmail1" class="form-label" >Number Of Copies</label>
+            <input type="number" class="form-control" value="@Model.NumOfCopies" name="NumOfCopies">
+
+        </div>
+
+        <button type="submit" class="btn btn-primary" asp-route-id="@Model.Id">Submit</button>
+        </form>
+        </div>

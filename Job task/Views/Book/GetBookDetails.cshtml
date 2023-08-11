@@ -1,0 +1,32 @@
+﻿﻿
+@model List<Books>
+
+@{
+    var book = ViewBag.BookDetails;
+}
+
+<div class="container my-2">
+    <h3>Book Details</h3>
+    <table class="table ">
+        <thead>
+            <tr>
+                <th scope="col">Book Id</th>
+                <th>Book Name</th>
+                <th>Book Code</th>
+                <th>Number Of Copies</th>
+               
+            </tr>
+        </thead>
+        <tbody>
+
+            <tr>
+
+                <td>@book.Id </td>
+                <td>@book.Name</td>
+                <td>@book.Code</td>
+                <td>@book.NumOfCopies</td>
+                
+            </tr>
+        </tbody>
+    </table>
+</div>

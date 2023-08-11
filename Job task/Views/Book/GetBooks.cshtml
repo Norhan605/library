@@ -1,0 +1,68 @@
+﻿﻿
+
+@model List<Books>
+<link href="~/twitter-bootstrap/jquery-ui-1.13.2.custom/jquery-ui.min.css" rel="stylesheet" />
+<script src="~/twitter-bootstrap/jquery-ui-1.13.2.custom/external/jquery/jquery.js"></script>
+<script src="~/twitter-bootstrap/jquery-ui-1.13.2.custom/jquery-ui.min.js"></script>
+
+<script type="text/javascript">
+    $(function(){
+        $("#txtsearch").autocomplete({
+         source:'@Url.Action("autoComp")'
+        })
+    });
+</script>
+
+<div class="container">
+
+    <a class="btn btn-info" asp-action="CreateBook" > Create Book</a>
+
+    @using (Html.BeginForm())
+    {
+        <b>Book Name:</b>
+        @Html.TextBox("searchNum",null,new{name="txtsearch"})
+        ;
+        <input type="submit" value="Search" asp-action="Search">
+    }
+
+<table class="table">
+    <thead>
+        <tr>
+            <th scope="col">Book Id</th>
+            <th scope="col">Book Code</th>
+            <th scope="col">Book Name</th>
+            <th scope="col">Number Of Copies</th>
+            <th scope="col">Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var b in Model){
+        <tr>
+           @* <td>@b.Id</td>
+            <td>@b.Name</td>
+            <td>@b.Code</td>
+            <td>@b.NumOfCopies</td>*@
+
+                    <td>@Html.DisplayFor(modelItem=>b.Id)</td>
+                    <td>@Html.DisplayFor(modelItem=>b.Name)</td>
+                    <td>@Html.DisplayFor(modelItem=>b.Code)</td>
+                    <td>@Html.DisplayFor(modelItem=>b.NumOfCopies)</td>
+            <td>
+                <a class="btn btn-primary" asp-action="GeTBookDetails" asp-route-id="@b.Id">Details</a>
+               <a class="btn btn-success" asp-action="UpdateBook" asp-route-id="@b.Id">Edit</a>
+           @* <a  class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#exampleModal" asp-action="DeleteBook" asp-route-id="@b.Id">
+                            Delete
+                        </a>*@
+                        <a asp-controller="Book" asp-action="DeleteBook" asp-route-id="@b.Id"
+                       class="btn btn-danger"
+                       onclick="return confirm('Are you sure you want to delete this Book: @b.Name')">Delete</a>
+           
+                
+            </td>
+        </tr>
+       
+      }
+    </tbody>
+</table>
+</div>
+

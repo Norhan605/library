@@ -1,0 +1,25 @@
+﻿
+
+<div class="container w-50 my-3">
+<form method="post" asp-controller="Book" asp-action="CreateBook">
+    <div class="mb-3">
+        <label for="exampleInputEmail1" class="form-label">Book Name</label>
+        <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" name="Name">
+        
+    </div>
+    <div class="mb-3">
+        <label for="exampleInputEmail1" class="form-label">Book Code</label>
+        <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" name="Code">
+        
+    </div>
+
+    <div class="mb-3">
+        <label for="exampleInputEmail1" class="form-label">Book Copies</label>
+        <input type="number" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" name="NumOfCopies">
+        
+    </div>
+
+        <button type="submit" class="btn btn-primary">Submit</button>
+
+    </form>
+    </div>
