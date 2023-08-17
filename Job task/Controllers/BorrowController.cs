@@ -3,6 +3,7 @@ using Job_task.Models.Book;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
+using static System.Reflection.Metadata.BlobBuilder;
 
 namespace Job_task.Controllers
 {
@@ -10,37 +11,87 @@ namespace Job_task.Controllers
 
     {
         Context context = new Context();
+      
+      
 
-        [HttpGet]
-        //public IActionResult Borrow()
-        //{
-
-        //    var books = context.Books.ToList();
-        //    ViewBag.Book = books;
-        //    ViewBag.Books =new SelectList(books, "Id");
-        //    //ViewBag.Borrowers =new SelectList(context.Borrowers,"Id");
-
-        //    return View();
-        //} 
-
-        public IActionResult Borrow()
+        public IActionResult index()
         {
-            var book = context.Books.ToList();
-           
-            return View(book);
+            var books = context.Books.ToList();
+
+            //ViewBag.Book = books;
+            //ViewBag.Books = new SelectList(books, "Id");
+            //ViewBag.Borrowers =new SelectList(context.Borrowers,"Id");
+
+            ViewBag.Books = new SelectList(books, "Id", "Name"); // تمرير قائمة الكتب إلى الـ View
+
+
+            return View();
         }
+
+
+
         [HttpPost]
-        public IActionResult Borrow(string searchNum )
+        public ActionResult Borrow(int bookId)
         {
-            List<Books> book;
-            if (string.IsNullOrEmpty(searchNum))
+            var books = context.Books.ToList();
+            var book =context.Books.FirstOrDefault(b => b.Id == bookId); // العثور على الكتاب المحدد
+
+            if (book != null && book.NumOfCopies > 0)
             {
-                book = context.Books.ToList();
+                book.NumOfCopies--; // تقليل عدد النسخ
+                                       // القيام بالإجراءات الأخرى المطلوبة مثل حفظ التغييرات في قاعدة البيانات
+
+                ViewBag.Message = "Book borrowed successfully.";
             }
             else
             {
-                book = context.Books.Where(b => b.Name.StartsWith(searchNum)).ToList();
+                ViewBag.Message = "Book is not available.";
             }
+
+            ViewBag.Books = new SelectList(books, "Id", "Name"); // تمرير قائمة الكتب إلى الـ View
+            return View("Index");
+        }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        //public IActionResult Borrow()
+        //{
+        //    var book = context.Books.ToList();
+           
+        //    return View(book);
+        //}
+
+
+
+
+
+        //[HttpPost]
+
+
+
+        //public IActionResult Borrow(string searchNum )
+        //{
+        //    List<Books> book;
+        //    if (string.IsNullOrEmpty(searchNum))
+        //    {
+        //        book = context.Books.ToList();
+        //    }
+        //    else
+        //    {
+        //        book = context.Books.Where(b => b.Name.StartsWith(searchNum)).ToList();
+        //    }
 
             //if (string.IsNullOrEmpty(searchNum))
             //{
@@ -58,7 +109,7 @@ namespace Job_task.Controllers
             //        .ToList();
             //}
 
-            return View(book);
+            //return View(book);
         }
 
 
@@ -102,4 +153,4 @@ namespace Job_task.Controllers
         //    return View();
         //}
     }
-    }
+    

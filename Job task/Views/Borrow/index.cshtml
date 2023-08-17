@@ -1,0 +1,31 @@
+﻿@model List<Books>
+@{
+    ViewBag.Title = "Library";
+}
+
+
+<h2>Library</h2>
+
+<form method="post" action="@Url.Action("Borrow")">
+    @Html.AntiForgeryToken()
+
+    <div class="form-group">
+        @Html.Label("Select a book:")
+        @Html.DropDownList("bookId",(SelectList)ViewBag.Books,"-- Select Book --", new { @class = "form-control" })
+    </div>
+
+    <button type="submit" class="btn btn-primary">Borrow</button>
+</form>
+
+@if(!string.IsNullOrEmpty(ViewBag.Message))
+{
+    <div class="alert alert-info">@ViewBag.Message</div>
+}
+
+<h3>Books:</h3>
+<ul>
+    @foreach (var book in Model)
+    {
+        <li>@book.Name (Copies: @book.NumOfCopies)</li>
+    }
+</ul>
