@@ -1,0 +1,32 @@
+﻿@model Borrowers
+@{
+    ViewData["Title"] = "Edit";
+  
+}
+<div class="container w-50 my-3">
+
+    <form method="post" asp-controller="Borrower" asp-action="UpdateBorrower">
+
+     
+
+        <div class="mb-3">
+            <label for="exampleInputEmail1" class="form-label">Borrower Name</label>
+            <input type="text" class="form-control" value="@Model.Name" name="Name">
+
+        </div>
+        <div class="mb-3">
+            <label for="exampleInputEmail1" class="form-label"> Borrower Code</label>
+            <input type="text" class="form-control" value="@Model.Code" name="Code">
+
+        </div>
+
+     
+
+        <button type="submit" class="btn btn-primary" asp-route-id="@Model.Id">Submit</button>
+    </form>
+
+    <a asp-action="GetBorrowers" class="btn btn-secondary mt-3">
+
+        Back To all
+    </a>
+</div>

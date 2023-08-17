@@ -32,6 +32,22 @@ build_metadata.AdditionalFiles.CssScope =
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQm9va1xVcGRhdGVCb29rLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
+[C:/Users/PC/source/repos/Job task/Job task/Views/Borrower/CreateBorrower.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQm9ycm93ZXJcQ3JlYXRlQm9ycm93ZXIuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/PC/source/repos/Job task/Job task/Views/Borrower/GetBorrowerDetails.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQm9ycm93ZXJcR2V0Qm9ycm93ZXJEZXRhaWxzLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/PC/source/repos/Job task/Job task/Views/Borrower/GetBorrowers.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQm9ycm93ZXJcR2V0Qm9ycm93ZXJzLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/PC/source/repos/Job task/Job task/Views/Borrower/UpdateBorrower.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQm9ycm93ZXJcVXBkYXRlQm9ycm93ZXIuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
 [C:/Users/PC/source/repos/Job task/Job task/Views/Borrow/Borrow.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQm9ycm93XEJvcnJvdy5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 

@@ -1,9 +1,10 @@
-﻿@model List<Books>
+﻿@model IEnumerable<Books>
 @{
-    ViewBag.Title = "Library";
+   ViewBag.Title = "Library";
+    var books = ViewBag.Books;
 }
 
-
+<div class="container">
 <h2>Library</h2>
 
 <form method="post" action="@Url.Action("Borrow")">
@@ -11,10 +12,10 @@
 
     <div class="form-group">
         @Html.Label("Select a book:")
-        @Html.DropDownList("bookId",(SelectList)ViewBag.Books,"-- Select Book --", new { @class = "form-control" })
+        @Html.DropDownList("bookId",(SelectList)ViewBag.Books,"-- Select Book --", new { @class = "form-control w-50" })
     </div>
 
-    <button type="submit" class="btn btn-primary">Borrow</button>
+    <button type="submit" class="btn btn-primary mt-2">Borrow</button>
 </form>
 
 @if(!string.IsNullOrEmpty(ViewBag.Message))
@@ -22,10 +23,14 @@
     <div class="alert alert-info">@ViewBag.Message</div>
 }
 
-<h3>Books:</h3>
-<ul>
-    @foreach (var book in Model)
+@* <h3>Books:</h3> 
+ <ul>
+    @foreach (var book in books)
     {
         <li>@book.Name (Copies: @book.NumOfCopies)</li>
+       
     }
 </ul>
+ *@
+
+</div>

@@ -1,0 +1,39 @@
+﻿
+﻿
+@model List<Borrowers>
+
+@{
+    var borrower = ViewBag.borrowerDetail;
+}
+
+<div class="container my-2">
+    <h3 class="text-info">Borrower Details</h3>
+    <table class="table border border-1 border-warning">
+        <thead>
+            <tr>
+                <th scope="col">Borrower Id</th>
+                <th>Borrower Name</th>
+                <th>Borrower Code</th>
+                
+
+            </tr>
+        </thead>
+        <tbody>
+
+            <tr>
+
+                <td>@borrower.Id </td>
+                <td>@borrower.Name</td>
+                <td>@borrower.Code</td>
+                
+
+            </tr>
+        </tbody>
+    </table>
+    <a asp-action="GetBorrowers" class="btn btn-secondary">
+
+        Back To all
+    </a>
+</div>
+
+

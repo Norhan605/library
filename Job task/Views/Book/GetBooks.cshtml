@@ -13,16 +13,18 @@
     });
 </script>
 
+
+
 <div class="container">
 
-    <a class="btn btn-info" asp-action="CreateBook" > Create Book</a>
+    <a class="btn btn-info " style="float:right" asp-action="CreateBook" > Create Book</a>
 
     @using (Html.BeginForm())
     {
         <b>Book Name:</b>
         @Html.TextBox("searchNum",null,new{name="txtsearch"})
         ;
-        <input type="submit" value="Search" asp-action="Search">
+        <input type="submit" value="Search" asp-action="Search" class="btn btn-info">
     }
 
 <table class="table">
@@ -64,5 +66,9 @@
       }
     </tbody>
 </table>
+
+    <a asp-controller="Borrower" asp-action="GetBorrowers" class="btn btn-primary"> Borrowers  </a>
+    <a asp-controller="Borrow" asp-action="Borrow" class="btn btn-primary"> Borrow a Book  </a>
+
 </div>
 

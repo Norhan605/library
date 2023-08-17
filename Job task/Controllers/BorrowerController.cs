@@ -2,6 +2,7 @@
 using Job_task.Models;
 using Microsoft.AspNetCore.Mvc;
 using Job_task.Models.Borrower;
+using Job_task.Models.Book;
 
 namespace Job_task.Controllers
 {
@@ -39,37 +40,75 @@ namespace Job_task.Controllers
             return RedirectToAction("GetBorrowers");
         }
 
-        public IActionResult UpdateBorrower()
+      
+        public IActionResult UpdateBorrower(int id)
         {
-            return View();
+            var borrower = context.Borrowers.Find(id);
+           
+            return View(borrower);
         }
 
         [HttpPost]
 
-        public IActionResult UpdateBorrower(Borrowers borrower)
+        public IActionResult UpdateBorrower(int id, Borrowers borrowers)
         {
+            var borrower = context.Borrowers.Find(id);
+            try
+            {
+                if (borrowers is not null)
+                {
+                    borrower.Name = borrowers.Name;
+                    borrower.Code = borrowers.Code;
+                    
+                }
+                
 
-            context.Update(borrower);
-            context.SaveChanges();
+                context.Update(borrower);
+                context.SaveChanges();
 
-            return RedirectToAction("GetBorrowers");
+                return RedirectToAction("GetBorrowers");
+            }
+            catch (Exception ex)
+            {
+                return View();
+            }
         }
 
-        public IActionResult DeleteBorrower()
-        {
-            return View();
-        }
 
-        [HttpPost]
         public IActionResult DeleteBorrower(int id)
         {
 
-            var deletedBorrower = context.Books.Find(id);
-            context.Books.Remove(deletedBorrower);
+            var deletedBorrower = context.Borrowers.Find(id);
+            context.Borrowers.Remove(deletedBorrower);
             context.SaveChanges();
 
             return RedirectToAction("GetBorrowers");
         }
+
+
+
+        public IActionResult Search()
+        {
+            var borrower = context.Borrowers.ToList();
+
+            return View(borrower);
+        }
+        [HttpPost]
+        public IActionResult Search(string searchNum)
+        {
+            List<Borrowers> borrowers;
+            if (string.IsNullOrEmpty(searchNum))
+            {
+                borrowers = context.Borrowers.ToList();
+            }
+            else
+            {
+                borrowers = context.Borrowers.Where(b => b.Name.StartsWith(searchNum)).ToList();
+            }
+            return View("GetBorrowers", borrowers);
+        }
+
+
 
     }
 }

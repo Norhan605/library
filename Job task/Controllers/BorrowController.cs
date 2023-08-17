@@ -22,7 +22,7 @@ namespace Job_task.Controllers
             //ViewBag.Books = new SelectList(books, "Id");
             //ViewBag.Borrowers =new SelectList(context.Borrowers,"Id");
 
-            ViewBag.Books = new SelectList(books, "Id", "Name"); // تمرير قائمة الكتب إلى الـ View
+            ViewBag.Books = new SelectList(books, "Id", "Name"); 
 
 
             return View();
@@ -34,12 +34,11 @@ namespace Job_task.Controllers
         public ActionResult Borrow(int bookId)
         {
             var books = context.Books.ToList();
-            var book =context.Books.FirstOrDefault(b => b.Id == bookId); // العثور على الكتاب المحدد
+            var book =context.Books.FirstOrDefault(b => b.Id == bookId); 
 
             if (book != null && book.NumOfCopies > 0)
             {
-                book.NumOfCopies--; // تقليل عدد النسخ
-                                       // القيام بالإجراءات الأخرى المطلوبة مثل حفظ التغييرات في قاعدة البيانات
+                book.NumOfCopies--; 
 
                 ViewBag.Message = "Book borrowed successfully.";
             }
@@ -47,8 +46,9 @@ namespace Job_task.Controllers
             {
                 ViewBag.Message = "Book is not available.";
             }
-
-            ViewBag.Books = new SelectList(books, "Id", "Name"); // تمرير قائمة الكتب إلى الـ View
+            context.SaveChanges();
+            ViewBag.Books = new SelectList(books, "Id", "Name");
+            context.SaveChanges();
             return View("Index");
         }
 
@@ -57,21 +57,13 @@ namespace Job_task.Controllers
 
 
 
+        public IActionResult Borrow()
+        {
+            var books = context.Books.ToList();
 
-
-
-
-
-
-
-
-
-        //public IActionResult Borrow()
-        //{
-        //    var book = context.Books.ToList();
-           
-        //    return View(book);
-        //}
+            ViewBag.Books = new SelectList(books, "Id", "Name");
+            return View("Index");
+        }
 
 
 
@@ -93,24 +85,24 @@ namespace Job_task.Controllers
         //        book = context.Books.Where(b => b.Name.StartsWith(searchNum)).ToList();
         //    }
 
-            //if (string.IsNullOrEmpty(searchNum))
-            //{
-            //    book = context.Books.ToList();
-            //}
-            //else if(int.IsNegative(id))
-            //{
-            //    book = context.Books.ToList();
-            //}
-            //else
-            //{
-            //    book = context.Books
-            //        .Where(b => b.Name.StartsWith(searchNum))
-            //        .Where(b=>b.Id==id)
-            //        .ToList();
-            //}
+        //if (string.IsNullOrEmpty(searchNum))
+        //{
+        //    book = context.Books.ToList();
+        //}
+        //else if(int.IsNegative(id))
+        //{
+        //    book = context.Books.ToList();
+        //}
+        //else
+        //{
+        //    book = context.Books
+        //        .Where(b => b.Name.StartsWith(searchNum))
+        //        .Where(b=>b.Id==id)
+        //        .ToList();
+        //}
 
-            //return View(book);
-        }
+        //return View(book);
+    }
 
 
 

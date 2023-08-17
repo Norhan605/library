@@ -1,0 +1,67 @@
+﻿
+﻿
+
+@model List<Borrowers>
+<link href="~/twitter-bootstrap/jquery-ui-1.13.2.custom/jquery-ui.min.css" rel="stylesheet" />
+<script src="~/twitter-bootstrap/jquery-ui-1.13.2.custom/external/jquery/jquery.js"></script>
+<script src="~/twitter-bootstrap/jquery-ui-1.13.2.custom/jquery-ui.min.js"></script>
+
+<script type="text/javascript">
+    $(function () {
+        $("#txtsearch").autocomplete({
+            source: '@Url.Action("autoComp")'
+        })
+    });
+</script>
+
+
+
+<div class="container">
+
+    <a class="btn btn-info " style="float:right" asp-action="CreateBorrower"> Create Borrower</a>
+
+    @using (Html.BeginForm())
+    {
+        <b>Borrower Name:</b>
+        @Html.TextBox("searchNum",null,new{name="txtsearch"})
+        ;
+        <input type="submit" value="Search" asp-action="Search" class="btn btn-info">
+    }
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th scope="col">Borrowe Id</th>
+                <th scope="col">Borrowe Code</th>
+                <th scope="col">Borrowe Name</th>
+                
+                <th scope="col">Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var b in Model)
+            {
+                <tr>
+                  
+
+                    <td>@Html.DisplayFor(modelItem=>b.Id)</td>
+                    <td>@Html.DisplayFor(modelItem=>b.Name)</td>
+                    <td>@Html.DisplayFor(modelItem=>b.Code)</td>
+                    
+                    <td>
+                        <a class="btn btn-primary" asp-action="GetBorrowerDetails" asp-route-id="@b.Id">Details</a>
+                        <a class="btn btn-success" asp-action="UpdateBorrower" asp-route-id="@b.Id">Edit</a>
+                        
+                        <a asp-controller="Borrower" asp-action="DeleteBorrower" asp-route-id="@b.Id"
+                           class="btn btn-danger"
+                           onclick="return confirm('Are you sure you want to delete this Borrower: @b.Name')">Delete</a>
+
+
+                    </td>
+                </tr>
+
+            }
+        </tbody>
+    </table>
+</div>
+
